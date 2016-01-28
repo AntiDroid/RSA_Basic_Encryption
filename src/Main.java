@@ -21,8 +21,8 @@ public class Main {
 		System.out.print("INPUT: \t\t");
 		//Eingabe in ASCII umspeichern
 		for(int i = 0; i < size; i++){
-			msg[i] = BigInteger.valueOf((int)message.charAt(i));
-			System.out.print(((char)msg[i].intValue()));
+			msg[i] = BigInteger.valueOf(((int)message.charAt(i)));
+			System.out.print((char)(msg[i].intValue()));
 		}
 		
 		//Verschluesselung
@@ -32,9 +32,9 @@ public class Main {
 		
 		System.out.print("\nOUTPUT: \t");
 		//Entschluesselung
-		for(int i = 0; i < size; i++){		
+		for(int i = 0; i < size; i++){	
 			msg[i] = encrMsg[i].modPow(BigInteger.valueOf(privateKey), publicKey2);
-			System.out.print((char)msg[i].intValue());
+			System.out.print((char)(msg[i].intValue()));
 		}
 		
 	}
@@ -48,7 +48,7 @@ public class Main {
 		
 		if(prime == 2 || prime == 3 || prime == 5 || prime == 7)
 			return true;
-		else if(!(prime%2 == 0 || prime%3 == 0 || prime%5 == 0 || prime%7 == 0))
+		else if(!(prime%2 == 0 || prime%3 == 0 || prime%5 == 0 || prime%7 == 0) && prime != 1)
 			return true;
 	
 		return false;
@@ -62,12 +62,11 @@ public class Main {
 	 */
 	private static int ggTeiler(int var1, int var2) {
 		 
-		while (var2 != 0) {
-			if (var1 > var2) {
+		while (var2 != 0){
+			if (var1 > var2) 
 				var1 = var1 - var2;
-			} else {
-				var2 = var2 - var1;
-			}
+			else
+				var2 = var2 - var1;	
 		}
 		
 		return var1;
@@ -80,7 +79,7 @@ public class Main {
 	private static void generateEncryptionKeys(){
 		 
 		 Random generator = new Random();
-			
+		 
 			do{
 				prime1 = generator.nextInt(100);
 			}while(!isPrime(prime1));
